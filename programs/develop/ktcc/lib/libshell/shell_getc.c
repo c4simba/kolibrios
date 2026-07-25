@@ -2,8 +2,9 @@
 
 char shell_getc()
 {
+    shell_shm_t *h;
     __shell_init();
-    *__shell_shm = SHELL_GETC;
-    __SHELL_WAIT();
-    return *(__shell_shm+1);
+    h = (shell_shm_t*)__shell_shm;
+    __shell_request(SHELL_GETC, NULL, 0);
+    return (char)h->resp[0];
 }

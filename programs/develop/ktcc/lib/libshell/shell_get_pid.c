@@ -3,10 +3,11 @@
 
 unsigned shell_get_pid()
 {
+    shell_shm_t *h;
     unsigned pid;
     __shell_init();
-    *__shell_shm = SHELL_PID;
-    __SHELL_WAIT();
-    memcpy(&pid, __shell_shm+1, sizeof(unsigned));
+    h = (shell_shm_t*)__shell_shm;
+    __shell_request(SHELL_PID, NULL, 0);
+    memcpy(&pid, (void*)h->resp, sizeof(unsigned));
     return pid;
 }

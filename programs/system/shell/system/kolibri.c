@@ -20,6 +20,12 @@ asm volatile ("int $0x40"::"a"(5), "b"(d));
 }
 
 
+void kol_yield(void)
+{
+asm volatile ("int $0x40"::"a"(68), "b"(1));   // fn 68.1: switch to the next thread
+}
+
+
 // define a window
 // x, y - position; w, h - size; cs - color and style; c - caption; b - boder
 void kol_wnd_define(unsigned x, unsigned y, unsigned w, unsigned h, unsigned cs, unsigned b, char *t)

@@ -4,7 +4,7 @@
 void shell_puts(const char *str)
 {
     __shell_init();
-    *__shell_shm = SHELL_PUTS;
-    strcpy(__shell_shm+1, str);
-    __SHELL_WAIT();
+    // send the string together with its terminating '\0' so the shell can
+    // print the frame payload directly
+    __shell_send(SHELL_PUTS, str, strlen(str) + 1);
 }

@@ -70,6 +70,7 @@ uint16_t offset;
 
 void kol_exit();
 void kol_sleep(unsigned d);
+void kol_yield(void);
 void kol_wnd_define(unsigned x, unsigned y, unsigned w, unsigned h, unsigned cs, unsigned b, char *t);
 void kol_wnd_move(unsigned x, unsigned y);
 void kol_wnd_caption(char *s);
